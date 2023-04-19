@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript" language="javascript" charset="utf-8">
+            
+            // male constants for baselineMetabolicRate calculation
+            const MALE_CONSTANT            = 66;
+            const MALE_WEIGHT_MULTIPLIER   = 13.7;
+            const MALE_HEIGHT_MULTIPLIER   = 5;
+            const MALE_AGE_MULTIPLIER      = 6.8;
+            
+            // female constants for baselineMetabolicRate calculation
+            const FEMALE_CONSTANT          = 655;
+            const FEMALE_WEIGHT_MULTIPLIER = 9.5;
+            const FEMALE_HEIGHT_MULTIPLIER = 1.8;
+            const FEMALE_AGE_MULTIPLIER    = 4.7;
+
+            // declaring constants for diet calculators        
+            // High Protein Diet Constants
+            const HIGH_PROTEIN_CARBS       = 0.45;
+            const HIGH_PROTEIN_FATS        = 0.2;
+            const HIGH_PROTEIN_PROTEINS    = 0.35;
+
+            // High Carb Diet Constants
+            const HIGH_CARBS_CARBS         = 0.65;
+            const HIGH_CARBS_FATS          = 0.2;
+            const HIGH_CARBS_PROTEINS      = 0.15;
+
+            // High Fat Diet Constants
+            const HIGH_FATS_CARBS          = 0.45;
+            const HIGH_FATS_FATS           = 0.35;
+            const HIGH_FATS_PROTEINS       = 0.2;
+
+            // Recommended Diet Constants
+            const RECOMMENDED_CARBS        = 0.555;
+            const RECOMMENDED_FATS         = 0.221;
+            const RECOMMENDED_PROTEINS     = 0.224;
+
+
+            function baselineMetabolicRate(gender, height, weight, age){
+                
+                // declaring constants for the different expressions between gender
+                var _baselineMetabolicRate = 0;
+                
+                // depending on which gender, execute different calculation
+                switch(gender){
+                    case 1:
+                        var _baselineMetabolicRate = MALE_CONSTANT + 
+                                                    (MALE_WEIGHT_MULTIPLIER * weight) + 
+                                                    (MALE_HEIGHT_MULTIPLIER * height) - 
+                                                    (MALE_AGE_MULTIPLIER * age);
+                        break;
+                    case 2:
+                        var _baselineMetabolicRate = FEMALE_CONSTANT + 
+                                                    (FEMALE_WEIGHT_MULTIPLIER * weight) + 
+                                                    (FEMALE_HEIGHT_MULTIPLIER * height) - 
+                                                    (FEMALE_AGE_MULTIPLIER * age);
+                        break;
+                    default:
+                        return 0;
+
+                }
+
+                return _baselineMetabolicRate;
+            }
+
+            function dailyCaloricNeeds(baselineMetabolicRate, activityLevel){
+                
+                return baselineMetabolicRate * activityLevel;
+
+            }
+
+            function adjustedTotalCaloriesNeeded(dailyCaloricNeeds, desiredWeightDifference) {
+                
+                var _calorieCountDifference = (7000 * desiredWeightDifference) / 7;
+                return dailyCaloricNeeds + _calorieCountDifference;
+
+            }
+
+            function macrosCalculator(adjustedTotalCaloriesNeeded, dietType){
+                
+                var _calFromCarbs       = 0;
+                var _calFromFats        = 0;
+                var _calFromProtein     = 0;
+                var _checkDailyCalories = 0;
+
+                switch(dietType){
+                    // If no diet is selected, throw an error
+                    case 0:
+                        alert("Select the diet you want to follow first!");
+                        return false;
+                    // Recommended optimal mix diet
+                    case 1:
+                    
+                        var _calFromCarbs       = adjustedTotalCaloriesNeeded * RECOMMENDED_CARBS;
+                        var _calFromFats        = adjustedTotalCaloriesNeeded * RECOMMENDED_FATS;
+                        var _calFromProtein     = adjustedTotalCaloriesNeeded * RECOMMENDED_PROTEINS;
+                        var _checkDailyCalories = _calFromCarbs + _calFromFats + _calFromProtein;
+                        break;
+                    
+                    // High Protein Diet
+                    case 2:
+
+                        var _calFromCarbs       = adjustedTotalCaloriesNeeded * HIGH_PROTEIN_CARBS;
+                        var _calFromFats        = adjustedTotalCaloriesNeeded * HIGH_PROTEIN_FATS;
+                        var _calFromProtein     = adjustedTotalCaloriesNeeded * HIGH_PROTEIN_PROTEINS;
+                        var _checkDailyCalories = _calFromCarbs + _calFromFats + _calFromProtein;
+                        break;
+
+                    // High Carbs Diet
+                    case 3:
+                        
+                        var _calFromCarbs       = adjustedTotalCaloriesNeeded * HIGH_CARBS_CARBS;
+                        var _calFromFats        = adjustedTotalCaloriesNeeded * HIGH_CARBS_FATS;
+                        var _calFromProtein     = adjustedTotalCaloriesNeeded * HIGH_CARBS_PROTEINS;
+                        var _checkDailyCalories = _calFromCarbs + _calFromFats + _calFromProtein;
+                        break;
+                    
+                    // High Fats Diet
+                    case 4:
+
+                        var _calFromCarbs       = adjustedTotalCaloriesNeeded * HIGH_FATS_CARBS;
+                        var _calFromFats        = adjustedTotalCaloriesNeeded * HIGH_FATS_FATS;
+                        var _calFromProtein     = adjustedTotalCaloriesNeeded * HIGH_FATS_PROTEINS;
+                        var _checkDailyCalories = _calFromCarbs + _calFromFats + _calFromProtein;
+                        break;
+
+                }
+
+                return {
+                    
+                    calFromCarbs: _calFromCarbs,
+                    calFromFats: _calFromFats,
+                    calFromProtein: _calFromProtein,
+                    checkDailyCalories: _checkDailyCalories
+                    
+                };
+
+            }
+
+            function namingDietTypes(dietType){
+                
+                var dietName = "";
+                switch(dietType){
+                    case 1:
+                        dietName = "Recommended Optimal Diet";
+                        break;
+                    case 2:
+                        dietName = "High Protein Diet";
+                        break;
+                    case 3:
+                        dietName = "High Carbs Diet";
+                        break;
+                    case 4:
+                        dietName = "High Fats Diet";
+                        break;
+                }
+                
+                return dietName;
+            }
+
+            // When I click the "calculate" button, execute this function
+            function output(){
+
+                // gathering all of the user inputs
+                var gender                  = parseFloat(document.getElementById('gender').value);
+                var height                  = parseFloat(document.getElementById('height').value);
+                var weight                  = parseFloat(document.getElementById('weight').value);
+                var age                     = parseFloat(document.getElementById('age').value);
+                var activityLevel           = parseFloat(document.getElementById('activitylvl').value);
+                var desiredWeightDifference = parseFloat(document.getElementById('weightdifference').value);
+                var dietType                = parseFloat(document.getElementById('diettype').value);
+                
+ 
+                // checking if activity level is filled it
+                if (gender == 0) {
+                    alert("Select your gender first!");
+                    return false;
+                }
+                
+                // checking if activity level is filled it
+                if (activityLevel == 0) {
+                    alert("Select activity level first!");
+                    return false;
+                }
+       
+                // checking if activity level is filled it
+                if (dietType == 0) {
+                    alert("Select diet type first!");
+                    return false;
+                }
+                
+                // rendering functions as variables
+                var outBaseMetabolicRate              = baselineMetabolicRate(gender, height, weight, age);
+                var outDailyCaloricNeeds              = dailyCaloricNeeds(outBaseMetabolicRate, activityLevel);
+                var outAdjustedTotalCaloriesNeeded    = adjustedTotalCaloriesNeeded(outDailyCaloricNeeds, desiredWeightDifference);
+                var macrosCalculatorResult            = macrosCalculator(outAdjustedTotalCaloriesNeeded, dietType);
+                var outDietName                       = namingDietTypes(dietType);
+
+                // checking if all values are filled in
+                if (height == null || height == "", weight == null || weight == "", age == null || age == "", desiredWeightDifference == desiredWeightDifference == "") {
+                    
+                    alert("Please Fill In All Required Fields");
+                    return false;
+
+                } else {
+
+                    // Outputting all of the results
+                    document.getElementById('result').innerHTML =   '<br /><p>Your baseline metabolic rate is ' + outBaseMetabolicRate.toFixed(0) + ' kcal, but your daily caloric needs amount to ' + outDailyCaloricNeeds.toFixed(0) + ' kcal. However, if you want to achieve your goals, you will need an intake of ' + outAdjustedTotalCaloriesNeeded.toFixed(0) + ' kcal.</p>' + 
+                    '<h3>You chose the ' + outDietName + ' diet. Here are your macros!</h3>' +
+                    '<div class="wrapper">' + 
+                    '<div>Calories from Carbs:</div>' +
+                    '<div>' + macrosCalculatorResult.calFromCarbs.toFixed(0) + ' kcal</div>' +                                
+                    '<div>Calories from Fats:</div>' +
+                    '<div>' + macrosCalculatorResult.calFromFats.toFixed(0) + ' kcal</div>' +
+                    '<div>Calories from Protein:</div>' +
+                    '<div>' + macrosCalculatorResult.calFromProtein.toFixed(0) + ' kcal</div>' +
+                    '<div>Total Calories Required:</div>' +
+                    '<div>' + macrosCalculatorResult.checkDailyCalories.toFixed(0) + ' kcal</div>' +
+                    '</div>'
+                
+                }
+
+            }
+
+        </script>
+        <style>
+            .wrapper {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                /*grid-auto-rows: 200px;*/
+            }
+            @media screen and (max-width: 350px) {
+                .wrapper{
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div>
+                <label for="gender">Gender:&nbsp;</label>
+            </div>
+            <div>
+                <select name="gender" id="gender">
+                    <option value="0">Select your Gender</option>
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                </select>
+            </div>
+            <div>
+                <label for="height">Height (cm):&nbsp;</label>
+            </div>
+            <div>
+                <input id="height" type="text" placeholder="174" onkeyup="this.value=this.value.replace(',','.')">
+            </div>
+            <div>
+                <label for="weight">weight (kg):&nbsp;</label>
+            </div>
+            <div>
+                <input id="weight" type="text" placeholder="75" onkeyup="this.value=this.value.replace(',','.')">
+            </div>
+            <div>
+                <label for="age">Age (years):&nbsp;</label>
+            </div>
+            <div>
+                <input id="age" type="text" placeholder="25">
+            </div>
+            <div>
+                <label for="activitylvl">Corresponding activity level:&nbsp;</label>
+            </div>
+            <div>
+                <select name="activitylvl" id="activitylvl">
+                    <option value="0">Select activity level</option>
+                    <option value="1.2">Sedentary</option>
+                    <option value="1.375">Lightly active</option>
+                    <option value="1.55">Moderately active</option>
+                    <option value="1.725">Very active</option>
+                    <option value="1.9">Extra active</option>
+                </select>
+            </div>
+            <div>
+                <label for="weightdifference">Desired weight gain or loss (-) per week (kg):&nbsp;</label>
+            </div>
+            <div>
+                <input id="weightdifference" onkeyup="this.value=this.value.replace(',','.')" value="0" type="text">
+            </div>
+            <div>
+                <label for="diettype">Choose type of diet necessary:&nbsp;</label>
+            </div>
+            <div>
+                <select name="diettype" id="diettype">
+                    <option value="0">Select your diet type</option>
+                    <option value="1">Recommended Optimal mix</option>
+                    <option value="2">High Protein Diet</option>
+                    <option value="3">High Carbs Diet</option>
+                    <option value="4">High Fat Diet</option>
+                </select>
+            </div>
+        </div>
+        <button onclick="output()">
+            Calculate
+        </button>
+        <div id="result">
+            
+        </div>
+    </body>
+</html>

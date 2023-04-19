@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <script type="text/javascript" language="javascript" charset="utf-8">
+
+            // When I click the "calculate" button, execute this function
+            function output(){
+
+                var bodyweight  =   parseFloat(document.getElementById('body-weight').value);
+                var height      =   parseFloat(document.getElementById('height').value);
+                
+                // calculate bmi ( weight in kg / (height in m)^2 )
+                var bmi         =   bodyweight / height ** 2;
+
+                // if for some reason it doesn't calculate, throw an error message
+                var classification = "Error";
+                
+                // BMI calculations
+                if (bmi <= 16.5) {
+                    classification = "Severely Underweight";
+                } else if (bmi >= 16.6 && bmi <= 18.4) {
+                    classification = "Underweight";
+                } else if (bmi >= 18.5 && bmi <= 24.9) {
+                    classification = "Normal";
+                } else if (bmi >= 25 && bmi <= 30) {
+                    classification = "Overweight";
+                } else if (bmi >= 30.1 && bmi <= 34.9) {
+                    classification = "First stage of obesity";
+                } else if (bmi>= 35 && bmi <= 40) {
+                    classification = "Second stage of obesity";
+                } else if (bmi >= 40.1) {
+                    classification = "Third stage of obesity";
+                } 
+
+                // Output the result and classification
+                document.getElementById('result').innerHTML = bmi + " - " + classification;
+
+            }
+
+        </script>
+    </head>
+    <body>
+        <div>
+            <label>Body Weight (kg)&nbsp;</label>
+            <input id="body-weight" type="text">
+        </div>
+        <div>
+            <label>height (meters)&nbsp;</label>
+            <input id="height" type="text">
+        </div>
+        <div>
+            <p id="result"></p>
+        </div>
+        <button onclick="output()">
+            Calculate
+        </button>
+    </body>
+</html>

@@ -1,0 +1,97 @@
+<html>
+    <head>
+        <script type="text/javascript" language="javascript" charset="utf-8">
+
+            // function to generate the string
+            function stringToPrint(_result, _outputField, _exercise, _article){
+
+                // populating p tags
+                var nNumberToInsert     = _result.toFixed(2);
+                return (_article >1 ? 'On ' : 'In the ') + _exercise + ', you are ' + Math.abs(nNumberToInsert) + '% ' + (_result >= 0 ? 'stronger' : 'weaker') + ' than the average lifter.';
+
+            }
+            
+            // When I click the "calculate" button, execute this function
+            function output(){
+
+                // declaring and pulling all of the variables the user inputs
+                var inputBenchpress     = parseFloat(document.getElementById('inputbenchpress').value);
+                var inputSquat          = parseFloat(document.getElementById('inputsquat').value);
+                var inputDeadlift       = parseFloat(document.getElementById('inputdeadlift').value);
+                var inputBarbellCurl    = parseFloat(document.getElementById('inputbarbellcurl').value);
+                var inputDumbbellCurl   = parseFloat(document.getElementById('inputdumbellcurl').value);
+                var inputPushups        = parseFloat(document.getElementById('inputpushups').value);
+                var inputPullups        = parseFloat(document.getElementById('inputpullups').value);
+
+                // declaring average lift values as constants
+                const avgBenchpress     = 98.42954429;
+                const avgSquat          = 130.18101019;
+                const avgDeadlift       = 152.40703632;
+                const avgBarbellcurl    = 46.72001411;
+                const avgDumbbellcurl   = 23.58680324;
+                const avgPushups        = 41;
+                const avgPullups        = 14;
+
+                // calculating all of the various percentages
+                var resultBenchpress    = ((inputBenchpress - avgBenchpress) / avgBenchpress) * 100;
+                var resultSquat         = ((inputSquat - avgSquat) / avgSquat) * 100;
+                var resultDeadlift      = ((inputDeadlift - avgDeadlift) / avgDeadlift) * 100;
+                var resultBarbellcurl   = ((inputBarbellCurl - avgBarbellcurl) / avgBarbellcurl) * 100;
+                var resultDumbbellcurl  = ((inputDumbbellCurl - avgDumbbellcurl) / avgDumbbellcurl) * 100;
+                var resultPushups       = ((inputPushups - avgPushups) / avgPushups) * 100;
+                var resultPullups       = ((inputPullups - avgPullups) / avgPullups) * 100;
+
+                document.getElementById('outputBenchPress').innerHTML = stringToPrint(resultBenchpress, "outputBenchPress", "Bench Press", 1);
+                document.getElementById('outputSquat').innerHTML = stringToPrint(resultSquat, "outputSquat", "Squat", 1);
+                document.getElementById('outputDeadlift').innerHTML = stringToPrint(resultDeadlift, "outputDeadlift", "Deadlift", 1);
+                document.getElementById('outputBarbellcurl').innerHTML = stringToPrint(resultBarbellcurl, "outputBarbellcurl", "Barbell curl", 1);
+                document.getElementById('outputDumbbellcurl').innerHTML = stringToPrint(resultDumbbellcurl, "outputDumbbellcurl", "Dumbbell curl", 1);
+                document.getElementById('outputPushups').innerHTML = stringToPrint(resultPushups, "outputPushups", "Pushups", 2);
+                document.getElementById('outputPullups').innerHTML = stringToPrint(resultPullups, "outputPullups", "Pullups", 2);
+
+
+            }
+
+        </script>
+    </head>
+    <body>
+        <div>
+            <label>How much can you bench?:&nbsp;</label>
+            <input id="inputbenchpress" type="text">
+            <p id="outputBenchPress"></span></p>
+        </div>
+        <div>
+            <label>How much can you Squat?&nbsp;</label>
+            <input id="inputsquat" type="text">
+            <p id="outputSquat"></p>
+        </div>
+        <div>
+            <label>How much can you Deadlift?&nbsp;</label>
+            <input id="inputdeadlift" type="text">
+            <p id="outputDeadlift"></p>
+        </div>
+        <div>
+            <label>How much is your Barbell Curl max?&nbsp;</label>
+            <input id="inputbarbellcurl" type="text">
+            <p id="outputBarbellcurl"></p>
+        </div>
+        <div>
+            <label>How much is your Dumbbell Curl max?&nbsp;</label>
+            <input id="inputdumbellcurl" type="text">
+            <p id="outputDumbbellcurl"></p>
+        </div>
+        <div>
+            <label>How many pushups can you do?&nbsp;</label>
+            <input id="inputpushups" type="text">
+            <p id="outputPushups"></p>
+        </div>
+        <div>
+            <label>How many pull ups can you do?:&nbsp;</label>
+            <input id="inputpullups" type="text">
+            <p id="outputPullups"></p>
+        </div>
+        <button onclick="output()">
+            Calculate
+        </button>
+    </body>
+</html>

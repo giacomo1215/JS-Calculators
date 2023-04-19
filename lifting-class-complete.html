@@ -1,0 +1,1511 @@
+<html>
+    <head>
+        <script type="text/javascript" language="javascript" charset="utf-8">
+
+            // When I click the "calculate" button, execute this function
+            function output(){
+
+                // I pick up all of the variables that the user inputs
+                var bodyweight     =   parseFloat(document.getElementById('body-weight').value);
+                var squat          =   parseFloat(document.getElementById('squat-weight').value);
+                var benchpress     =   parseFloat(document.getElementById('bp-weight').value);
+                var deadlift       =   parseFloat(document.getElementById('dl-weight').value);
+                var curl           =   parseFloat(document.getElementById('sc-weight').value);
+                
+                // sum all of the inputs to gather the total lift
+                var totalliftkg    =   squat + benchpress + deadlift; 
+
+                // print out the total lift in kg
+                document.getElementById('total-lift').innerHTML = totalliftkg;
+
+                // converting the input values to lbs
+                var bodyweightlbs  =   bodyweight * 2.204262;
+                var squatlbs       =   squat * 2.204262;
+                var benchpresslbs  =   benchpress * 2.204262;
+                var deadliftlbs    =   deadlift * 2.204262;
+                var curllbs        =   curl * 2.204262;
+                var totalliftlbs   =   totalliftkg * 2.20462;
+                
+                // declaring weight class variable, it defaults to "Out of Range".
+                var squatclass     = "Out of Range";
+                var bpclass        = "Out of Range";
+                var dlclass        = "Out of Range";
+                var totalliftclass = "Out of Range";
+                var curlclass      = "Out of Range";
+
+                // checking which weight group user fits in
+                if (bodyweightlbs <= 114) {
+                    
+                    // setting up various classes per weight group
+                    // squat calculation
+                    if (squatlbs >= 186 && squatlbs < 212) {
+                        squatclass = "Class IV"
+                    }
+                    else if (squatlbs >= 212 && squatlbs < 245) {
+                        squatclass = "Class III"
+                    }
+                    else if (squatlbs >= 245 && squatlbs < 278) {
+                        squatclass = "Class II"
+                    }
+                    else if (squatlbs >= 278 && squatlbs < 309) {
+                        squatclass = "Class I"
+                    }
+                    else if (squatlbs >= 309 && squatlbs < 335) {
+                        squatclass = "Master"
+                    }
+                    else if (squatlbs >= 335 && squatlbs < 365) {
+                        squatclass = "Elite"
+                    }
+                    else if (squatlbs >= 365) {
+                        squatclass = "International Elite"
+                    }
+                    
+                    // benchpress calculation
+                    if (benchpresslbs >= 133 && benchpresslbs < 151) {
+                        bpclass = "Class IV"
+                    }
+                    else if (benchpresslbs >= 151 && benchpresslbs < 175) {
+                        bpclass = "Class III"
+                    }
+                    else if (benchpresslbs >= 175 && benchpresslbs < 199) {
+                        bpclass = "Class II"
+                    }
+                    else if (benchpresslbs >= 199 && benchpresslbs < 221) {
+                        bpclass = "Class I"
+                    }
+                    else if (benchpresslbs >= 221 && benchpresslbs < 240) {
+                        bpclass = "Master"
+                    }
+                    else if (benchpresslbs >= 240 && benchpresslbs < 261) {
+                        bpclass = "Elite"
+                    }
+                    else if (benchpresslbs >= 261) {
+                        bpclass = "International Elite"
+                    }
+
+                    // deadlift calculation
+                    if (deadliftlbs >= 212 && deadliftlbs < 242) {
+                        dlclass = "Class IV"
+                    }
+                    else if (deadliftlbs >= 242 && deadliftlbs < 280) {
+                        dlclass = "Class III"
+                    }
+                    else if (deadliftlbs >= 280 && deadliftlbs < 318) {
+                        dlclass = "Class II"
+                    }
+                    else if (deadliftlbs >= 318 && deadliftlbs < 353) {
+                        dlclass = "Class I"
+                    }
+                    else if (deadliftlbs >= 353 && deadliftlbs < 383) {
+                        dlclass = "Master"
+                    }
+                    else if (deadliftlbs >= 383 && deadliftlbs < 418) {
+                        dlclass = "Elite"
+                    }
+                    else if (deadliftlbs >= 418) {
+                        dlclass = "International Elite"
+                    }
+
+                    // curl calculation
+                    if (curllbs >= 46 && curllbs < 54) {
+                        curlclass = "Class IV"
+                    }
+                    else if (curllbs >= 54 && curllbs < 61) {
+                        curlclass = "Class III"
+                    }
+                    else if (curllbs >= 61 && curllbs < 70) {
+                        curlclass = "Class II"
+                    }
+                    else if (curllbs >= 70 && curllbs < 77) {
+                        curlclass = "Class I"
+                    }
+                    else if (curllbs >= 77 && curllbs < 85) {
+                        curlclass = "Master"
+                    }
+                    else if (curllbs >= 85 && curllbs < 92.65) {
+                        curlclass = "Elite"
+                    }
+                    else if (curllbs >= 92.65) {
+                        curlclass = "International Elite"
+                    }
+
+                    // total lift
+                    if (totalliftlbs >= 531 && totalliftlbs < 605) {
+                        totalliftclass = "Class IV"
+                    }
+                    else if (totalliftlbs >= 605 && totalliftlbs < 699) {
+                        totalliftclass = "Class III"
+                    }
+                    else if (totalliftlbs >= 699 && totalliftlbs < 794) {
+                        totalliftclass = "Class II"
+                    }
+                    else if (totalliftlbs >= 794 && totalliftlbs < 883) {
+                        totalliftclass = "Class I"
+                    }
+                    else if (totalliftlbs >= 883 && totalliftlbs < 958) {
+                        totalliftclass = "Master"
+                    }
+                    else if (totalliftlbs >= 958 && totalliftlbs < 1044) {
+                        totalliftclass = "Elite"
+                    }
+                    else if (totalliftlbs >= 1044) {
+                        totalliftclass = "International Elite"
+                    }
+                }
+
+                else if (bodyweightlbs > 114 && bodyweightlbs <= 123) {
+                    
+                    // setting up various classes per weight group
+                    // squat calculation
+                    if (squatlbs >= 204 && squatlbs < 234) {
+                        squatclass = "Class IV"
+                    }
+                    else if (squatlbs >= 234 && squatlbs < 268) {
+                        squatclass = "Class III"
+                    }
+                    else if (squatlbs >= 268 && squatlbs < 305) {
+                        squatclass = "Class II"
+                    }
+                    else if (squatlbs >= 305 && squatlbs < 330) {
+                        squatclass = "Class I"
+                    }
+                    else if (squatlbs >= 330 && squatlbs < 370) {
+                        squatclass = "Master"
+                    }
+                    else if (squatlbs >= 370 && squatlbs < 403) {
+                        squatclass = "Elite"
+                    }
+                    else if (squatlbs >= 403) {
+                        squatclass = "International Elite"
+                    }
+                    
+                    // benchpress calculation
+                    if (benchpresslbs >= 144 && benchpresslbs < 165) {
+                        bpclass = "Class IV"
+                    }
+                    else if (benchpresslbs >= 165 && benchpresslbs < 189) {
+                        bpclass = "Class III"
+                    }
+                    else if (benchpresslbs >= 189 && benchpresslbs < 215) {
+                        bpclass = "Class II"
+                    }
+                    else if (benchpresslbs >= 215 && benchpresslbs < 240) {
+                        bpclass = "Class I"
+                    }
+                    else if (benchpresslbs >= 240 && benchpresslbs < 260) {
+                        bpclass = "Master"
+                    }
+                    else if (benchpresslbs >= 260 && benchpresslbs < 284) {
+                        bpclass = "Elite"
+                    }
+                    else if (benchpresslbs >= 284) {
+                        bpclass = "International Elite"
+                    }
+
+                    // deadlift calculation
+                    if (deadliftlbs >= 227 && deadliftlbs < 261) {
+                        dlclass = "Class IV"
+                    }
+                    else if (deadliftlbs >= 261 && deadliftlbs < 298) {
+                        dlclass = "Class III"
+                    }
+                    else if (deadliftlbs >= 298 && deadliftlbs < 339) {
+                        dlclass = "Class II"
+                    }
+                    else if (deadliftlbs >= 339 && deadliftlbs < 378) {
+                        dlclass = "Class I"
+                    }
+                    else if (deadliftlbs >= 378 && deadliftlbs < 411) {
+                        dlclass = "Master"
+                    }
+                    else if (deadliftlbs >= 411 && deadliftlbs < 448) {
+                        dlclass = "Elite"
+                    }
+                    else if (deadliftlbs >= 448) {
+                        dlclass = "International Elite"
+                    }
+
+                    // curl calculation
+                    if (curllbs >= 54 && curllbs < 63) {
+                        curlclass = "Class IV"
+                    }
+                    else if (curllbs >= 63 && curllbs < 72) {
+                        curlclass = "Class III"
+                    }
+                    else if (curllbs >= 72 && curllbs < 82) {
+                        curlclass = "Class II"
+                    }
+                    else if (curllbs >= 82 && curllbs < 91) {
+                        curlclass = "Class I"
+                    }
+                    else if (curllbs >= 91 && curllbs < 100) {
+                        curlclass = "Master"
+                    }
+                    else if (curllbs >= 100 && curllbs < 109) {
+                        curlclass = "Elite"
+                    }
+                    else if (curllbs >= 109) {
+                        curlclass = "International Elite"
+                    }
+
+                    // total lift
+                    if (totalliftlbs >= 575 && totalliftlbs < 660) {
+                        totalliftclass = "Class IV"
+                    }
+                    else if (totalliftlbs >= 660 && totalliftlbs < 754) {
+                        totalliftclass = "Class III"
+                    }
+                    else if (totalliftlbs >= 754 && totalliftlbs < 858) {
+                        totalliftclass = "Class II"
+                    }
+                    else if (totalliftlbs >= 858 && totalliftlbs < 958) {
+                        totalliftclass = "Class I"
+                    }
+                    else if (totalliftlbs >= 958 && totalliftlbs < 1041) {
+                        totalliftclass = "Master"
+                    }
+                    else if (totalliftlbs >= 1041 && totalliftlbs < 1135) {
+                        totalliftclass = "Elite"
+                    }
+                    else if (totalliftlbs >= 1135) {
+                        totalliftclass = "International Elite"
+                    }
+                }
+
+                else if (bodyweightlbs > 123 && bodyweightlbs <= 132) {
+                    
+                    // setting up various classes per weight group
+                    // squat calculation
+                    if (squatlbs >= 223 && squatlbs < 255) {
+                        squatclass = "Class IV"
+                    }
+                    else if (squatlbs >= 355 && squatlbs < 303) {
+                        squatclass = "Class III"
+                    }
+                    else if (squatlbs >= 303 && squatlbs < 332) {
+                        squatclass = "Class II"
+                    }
+                    else if (squatlbs >= 332 && squatlbs < 371) {
+                        squatclass = "Class I"
+                    }
+                    else if (squatlbs >= 371 && squatlbs < 404) {
+                        squatclass = "Master"
+                    }
+                    else if (squatlbs >= 404 && squatlbs < 440) {
+                        squatclass = "Elite"
+                    }
+                    else if (squatlbs >= 440) {
+                        squatclass = "International Elite"
+                    }
+                    
+                    // benchpress calculation
+                    if (benchpresslbs >= 155 && benchpresslbs < 177) {
+                        bpclass = "Class IV"
+                    }
+                    else if (benchpresslbs >= 177 && benchpresslbs < 210) {
+                        bpclass = "Class III"
+                    }
+                    else if (benchpresslbs >= 210 && benchpresslbs < 231) {
+                        bpclass = "Class II"
+                    }
+                    else if (benchpresslbs >= 231 && benchpresslbs < 258) {
+                        bpclass = "Class I"
+                    }
+                    else if (benchpresslbs >= 258 && benchpresslbs < 280) {
+                        bpclass = "Master"
+                    }
+                    else if (benchpresslbs >= 280 && benchpresslbs < 305) {
+                        bpclass = "Elite"
+                    }
+                    else if (benchpresslbs >= 305) {
+                        bpclass = "International Elite"
+                    }
+
+                    // deadlift calculation
+                    if (deadliftlbs >= 242 && deadliftlbs < 277) {
+                        dlclass = "Class IV"
+                    }
+                    else if (deadliftlbs >= 277 && deadliftlbs < 328) {
+                        dlclass = "Class III"
+                    }
+                    else if (deadliftlbs >= 328 && deadliftlbs < 360) {
+                        dlclass = "Class II"
+                    }
+                    else if (deadliftlbs >= 360 && deadliftlbs < 402) {
+                        dlclass = "Class I"
+                    }
+                    else if (deadliftlbs >= 402 && deadliftlbs < 437) {
+                        dlclass = "Master"
+                    }
+                    else if (deadliftlbs >= 437 && deadliftlbs < 477) {
+                        dlclass = "Elite"
+                    }
+                    else if (deadliftlbs >= 477) {
+                        dlclass = "International Elite"
+                    }
+
+                    // curl calculation
+                    if (curllbs >= 62 && curllbs < 72) {
+                        curlclass = "Class IV"
+                    }
+                    else if (curllbs >= 72 && curllbs < 83) {
+                        curlclass = "Class III"
+                    }
+                    else if (curllbs >= 83 && curllbs < 94) {
+                        curlclass = "Class II"
+                    }
+                    else if (curllbs >= 94 && curllbs < 105) {
+                        curlclass = "Class I"
+                    }
+                    else if (curllbs >= 105 && curllbs < 115) {
+                        curlclass = "Master"
+                    }
+                    else if (curllbs >= 115 && curllbs < 125.35) {
+                        curlclass = "Elite"
+                    }
+                    else if (curllbs >= 125.35) {
+                        curlclass = "International Elite"
+                    }
+
+                    // total lift
+                    if (totalliftlbs >= 620 && totalliftlbs < 709) {
+                        totalliftclass = "Class IV"
+                    }
+                    else if (totalliftlbs >= 709 && totalliftlbs < 841) {
+                        totalliftclass = "Class III"
+                    }
+                    else if (totalliftlbs >= 841 && totalliftlbs < 923) {
+                        totalliftclass = "Class II"
+                    }
+                    else if (totalliftlbs >= 923 && totalliftlbs < 1031) {
+                        totalliftclass = "Class I"
+                    }
+                    else if (totalliftlbs >= 1031 && totalliftlbs < 1121) {
+                        totalliftclass = "Master"
+                    }
+                    else if (totalliftlbs >= 1121 && totalliftlbs < 1222) {
+                        totalliftclass = "Elite"
+                    }
+                    else if (totalliftlbs >= 1222) {
+                        totalliftclass = "International Elite"
+                    }
+                }
+
+                else if (bodyweightlbs > 132 && bodyweightlbs <= 148) {
+                    
+                    // setting up various classes per weight group
+                    // squat calculation
+                    if (squatlbs >= 254 && squatlbs < 291) {
+                        squatclass = "Class IV"
+                    }
+                    else if (squatlbs >= 291 && squatlbs < 331) {
+                        squatclass = "Class III"
+                    }
+                    else if (squatlbs >= 331 && squatlbs < 379) {
+                        squatclass = "Class II"
+                    }
+                    else if (squatlbs >= 379 && squatlbs < 420) {
+                        squatclass = "Class I"
+                    }
+                    else if (squatlbs >= 420 && squatlbs < 458) {
+                        squatclass = "Master"
+                    }
+                    else if (squatlbs >= 458 && squatlbs < 499) {
+                        squatclass = "Elite"
+                    }
+                    else if (squatlbs >= 499) {
+                        squatclass = "International Elite"
+                    }
+                    
+                    // benchpress calculation
+                    if (benchpresslbs >= 174 && benchpresslbs < 200) {
+                        bpclass = "Class IV"
+                    }
+                    else if (benchpresslbs >= 200 && benchpresslbs < 227) {
+                        bpclass = "Class III"
+                    }
+                    else if (benchpresslbs >= 227 && benchpresslbs < 259) {
+                        bpclass = "Class II"
+                    }
+                    else if (benchpresslbs >= 259 && benchpresslbs < 288) {
+                        bpclass = "Class I"
+                    }
+                    else if (benchpresslbs >= 288 && benchpresslbs < 314) {
+                        bpclass = "Master"
+                    }
+                    else if (benchpresslbs >= 314 && benchpresslbs < 342) {
+                        bpclass = "Elite"
+                    }
+                    else if (benchpresslbs >= 342) {
+                        bpclass = "International Elite"
+                    }
+
+                    // deadlift calculation
+                    if (deadliftlbs >= 268 && deadliftlbs < 307) {
+                        dlclass = "Class IV"
+                    }
+                    else if (deadliftlbs >= 307 && deadliftlbs < 350) {
+                        dlclass = "Class III"
+                    }
+                    else if (deadliftlbs >= 350 && deadliftlbs < 399) {
+                        dlclass = "Class II"
+                    }
+                    else if (deadliftlbs >= 399 && deadliftlbs < 443) {
+                        dlclass = "Class I"
+                    }
+                    else if (deadliftlbs >= 443 && deadliftlbs < 483) {
+                        dlclass = "Master"
+                    }
+                    else if (deadliftlbs >= 483 && deadliftlbs < 527) {
+                        dlclass = "Elite"
+                    }
+                    else if (deadliftlbs >= 527) {
+                        dlclass = "International Elite"
+                    }
+
+                    // curl calculation
+                    if (curllbs >= 70 && curllbs < 82) {
+                        curlclass = "Class IV"
+                    }
+                    else if (curllbs >= 82 && curllbs < 94) {
+                        curlclass = "Class III"
+                    }
+                    else if (curllbs >= 94 && curllbs < 107) {
+                        curlclass = "Class II"
+                    }
+                    else if (curllbs >= 107 && curllbs < 118) {
+                        curlclass = "Class I"
+                    }
+                    else if (curllbs >= 118 && curllbs < 130) {
+                        curlclass = "Master"
+                    }
+                    else if (curllbs >= 130 && curllbs < 141.7) {
+                        curlclass = "Elite"
+                    }
+                    else if (curllbs >= 141.7) {
+                        curlclass = "International Elite"
+                    }
+
+                    // total lift
+                    if (totalliftlbs >= 695 && totalliftlbs < 798) {
+                        totalliftclass = "Class IV"
+                    }
+                    else if (totalliftlbs >= 798 && totalliftlbs < 908) {
+                        totalliftclass = "Class III"
+                    }
+                    else if (totalliftlbs >= 908 && totalliftlbs < 1037) {
+                        totalliftclass = "Class II"
+                    }
+                    else if (totalliftlbs >= 1037 && totalliftlbs < 1151) {
+                        totalliftclass = "Class I"
+                    }
+                    else if (totalliftlbs >= 1151 && totalliftlbs < 1255) {
+                        totalliftclass = "Master"
+                    }
+                    else if (totalliftlbs >= 1255 && totalliftlbs < 1368) {
+                        totalliftclass = "Elite"
+                    }
+                    else if (totalliftlbs >= 1368) {
+                        totalliftclass = "International Elite"
+                    }
+                }
+
+                else if (bodyweightlbs > 148 && bodyweightlbs <= 165) {
+                    
+                    // setting up various classes per weight group
+                    // squat calculation
+                    if (squatlbs >= 279 && squatlbs < 322) {
+                        squatclass = "Class IV"
+                    }
+                    else if (squatlbs >= 322 && squatlbs < 367) {
+                        squatclass = "Class III"
+                    }
+                    else if (squatlbs >= 367 && squatlbs < 418) {
+                        squatclass = "Class II"
+                    }
+                    else if (squatlbs >= 418 && squatlbs < 466) {
+                        squatclass = "Class I"
+                    }
+                    else if (squatlbs >= 466 && squatlbs < 508) {
+                        squatclass = "Master"
+                    }
+                    else if (squatlbs >= 508 && squatlbs < 554) {
+                        squatclass = "Elite"
+                    }
+                    else if (squatlbs >= 554) {
+                        squatclass = "International Elite"
+                    }
+                    
+                    // benchpress calculation
+                    if (benchpresslbs >= 189 && benchpresslbs < 217) {
+                        bpclass = "Class IV"
+                    }
+                    else if (benchpresslbs >= 217 && benchpresslbs < 248) {
+                        bpclass = "Class III"
+                    }
+                    else if (benchpresslbs >= 248 && benchpresslbs < 283) {
+                        bpclass = "Class II"
+                    }
+                    else if (benchpresslbs >= 283 && benchpresslbs < 315) {
+                        bpclass = "Class I"
+                    }
+                    else if (benchpresslbs >= 315 && benchpresslbs < 344) {
+                        bpclass = "Master"
+                    }
+                    else if (benchpresslbs >= 344 && benchpresslbs < 374) {
+                        bpclass = "Elite"
+                    }
+                    else if (benchpresslbs >= 374) {
+                        bpclass = "International Elite"
+                    }
+
+                    // deadlift calculation
+                    if (deadliftlbs >= 287 && deadliftlbs < 330) {
+                        dlclass = "Class IV"
+                    }
+                    else if (deadliftlbs >= 330 && deadliftlbs < 377) {
+                        dlclass = "Class III"
+                    }
+                    else if (deadliftlbs >= 377 && deadliftlbs < 430) {
+                        dlclass = "Class II"
+                    }
+                    else if (deadliftlbs >= 430 && deadliftlbs < 479) {
+                        dlclass = "Class I"
+                    }
+                    else if (deadliftlbs >= 479 && deadliftlbs < 522) {
+                        dlclass = "Master"
+                    }
+                    else if (deadliftlbs >= 522 && deadliftlbs < 569) {
+                        dlclass = "Elite"
+                    }
+                    else if (deadliftlbs >= 569) {
+                        dlclass = "International Elite"
+                    }
+
+                    // curl calculation
+                    if (curllbs >= 78 && curllbs < 90) {
+                        curlclass = "Class IV"
+                    }
+                    else if (curllbs >= 82 && curllbs < 103) {
+                        curlclass = "Class III"
+                    }
+                    else if (curllbs >= 94 && curllbs < 117) {
+                        curlclass = "Class II"
+                    }
+                    else if (curllbs >= 107 && curllbs < 130) {
+                        curlclass = "Class I"
+                    }
+                    else if (curllbs >= 118 && curllbs < 142) {
+                        curlclass = "Master"
+                    }
+                    else if (curllbs >= 130 && curllbs < 154.78) {
+                        curlclass = "Elite"
+                    }
+                    else if (curllbs >= 154.78) {
+                        curlclass = "International Elite"
+                    }
+
+                    // total lift
+                    if (totalliftlbs >= 754 && totalliftlbs < 869) {
+                        totalliftclass = "Class IV"
+                    }
+                    else if (totalliftlbs >= 869 && totalliftlbs < 992) {
+                        totalliftclass = "Class III"
+                    }
+                    else if (totalliftlbs >= 992 && totalliftlbs < 1131) {
+                        totalliftclass = "Class II"
+                    }
+                    else if (totalliftlbs >= 1131 && totalliftlbs < 1260) {
+                        totalliftclass = "Class I"
+                    }
+                    else if (totalliftlbs >= 1260 && totalliftlbs < 1374) {
+                        totalliftclass = "Master"
+                    }
+                    else if (totalliftlbs >= 1374 && totalliftlbs < 1498) {
+                        totalliftclass = "Elite"
+                    }
+                    else if (totalliftlbs >= 1498) {
+                        totalliftclass = "International Elite"
+                    }
+                }
+
+                else if (bodyweightlbs > 165 && bodyweightlbs <= 181) {
+                    
+                    // setting up various classes per weight group
+                    // squat calculation
+                    if (squatlbs >= 301 && squatlbs < 345) {
+                        squatclass = "Class IV"
+                    }
+                    else if (squatlbs >= 345 && squatlbs < 396) {
+                        squatclass = "Class III"
+                    }
+                    else if (squatlbs >= 396 && squatlbs < 450) {
+                        squatclass = "Class II"
+                    }
+                    else if (squatlbs >= 450 && squatlbs < 501) {
+                        squatclass = "Class I"
+                    }
+                    else if (squatlbs >= 501 && squatlbs < 547) {
+                        squatclass = "Master"
+                    }
+                    else if (squatlbs >= 547 && squatlbs < 596) {
+                        squatclass = "Elite"
+                    }
+                    else if (squatlbs >= 596) {
+                        squatclass = "International Elite"
+                    }
+                    
+                    // benchpress calculation
+                    if (benchpresslbs >= 204 && benchpresslbs < 233) {
+                        bpclass = "Class IV"
+                    }
+                    else if (benchpresslbs >= 233 && benchpresslbs < 268) {
+                        bpclass = "Class III"
+                    }
+                    else if (benchpresslbs >= 268 && benchpresslbs < 304) {
+                        bpclass = "Class II"
+                    }
+                    else if (benchpresslbs >= 304 && benchpresslbs < 339) {
+                        bpclass = "Class I"
+                    }
+                    else if (benchpresslbs >= 339 && benchpresslbs < 370) {
+                        bpclass = "Master"
+                    }
+                    else if (benchpresslbs >= 370 && benchpresslbs < 403) {
+                        bpclass = "Elite"
+                    }
+                    else if (benchpresslbs >= 403) {
+                        bpclass = "International Elite"
+                    }
+
+                    // deadlift calculation
+                    if (deadliftlbs >= 309 && deadliftlbs < 354) {
+                        dlclass = "Class IV"
+                    }
+                    else if (deadliftlbs >= 354 && deadliftlbs < 407) {
+                        dlclass = "Class III"
+                    }
+                    else if (deadliftlbs >= 407 && deadliftlbs < 462) {
+                        dlclass = "Class II"
+                    }
+                    else if (deadliftlbs >= 462 && deadliftlbs < 515) {
+                        dlclass = "Class I"
+                    }
+                    else if (deadliftlbs >= 515 && deadliftlbs < 562) {
+                        dlclass = "Master"
+                    }
+                    else if (deadliftlbs >= 562 && deadliftlbs < 612) {
+                        dlclass = "Elite"
+                    }
+                    else if (deadliftlbs >= 612) {
+                        dlclass = "International Elite"
+                    }
+
+                    // curl calculation
+                    if (curllbs >= 83 && curllbs < 95) {
+                        curlclass = "Class IV"
+                    }
+                    else if (curllbs >= 95 && curllbs < 109) {
+                        curlclass = "Class III"
+                    }
+                    else if (curllbs >= 109 && curllbs < 124) {
+                        curlclass = "Class II"
+                    }
+                    else if (curllbs >= 124 && curllbs < 138) {
+                        curlclass = "Class I"
+                    }
+                    else if (curllbs >= 138 && curllbs < 151) {
+                        curlclass = "Master"
+                    }
+                    else if (curllbs >= 151 && curllbs < 164.59) {
+                        curlclass = "Elite"
+                    }
+                    else if (curllbs >= 164.59) {
+                        curlclass = "International Elite"
+                    }
+
+                    // total lift
+                    if (totalliftlbs >= 814 && totalliftlbs < 932) {
+                        totalliftclass = "Class IV"
+                    }
+                    else if (totalliftlbs >= 932 && totalliftlbs < 1071) {
+                        totalliftclass = "Class III"
+                    }
+                    else if (totalliftlbs >= 1071 && totalliftlbs < 1215) {
+                        totalliftclass = "Class II"
+                    }
+                    else if (totalliftlbs >= 1215 && totalliftlbs < 1355) {
+                        totalliftclass = "Class I"
+                    }
+                    else if (totalliftlbs >= 1355 && totalliftlbs < 1478) {
+                        totalliftclass = "Master"
+                    }
+                    else if (totalliftlbs >= 1478 && totalliftlbs < 1611) {
+                        totalliftclass = "Elite"
+                    }
+                    else if (totalliftlbs >= 1611) {
+                        totalliftclass = "International Elite"
+                    }
+                }
+
+                else if (bodyweightlbs > 181 && bodyweightlbs <= 198) {
+                    
+                    // setting up various classes per weight group
+                    // squat calculation
+                    if (squatlbs >= 322 && squatlbs < 370) {
+                        squatclass = "Class IV"
+                    }
+                    else if (squatlbs >= 370 && squatlbs < 424) {
+                        squatclass = "Class III"
+                    }
+                    else if (squatlbs >= 424 && squatlbs < 480) {
+                        squatclass = "Class II"
+                    }
+                    else if (squatlbs >= 480 && squatlbs < 539) {
+                        squatclass = "Class I"
+                    }
+                    else if (squatlbs >= 539 && squatlbs < 584) {
+                        squatclass = "Master"
+                    }
+                    else if (squatlbs >= 584 && squatlbs < 637) {
+                        squatclass = "Elite"
+                    }
+                    else if (squatlbs >= 637) {
+                        squatclass = "International Elite"
+                    }
+                    
+                    // benchpress calculation
+                    if (benchpresslbs >= 215 && benchpresslbs < 247) {
+                        bpclass = "Class IV"
+                    }
+                    else if (benchpresslbs >= 247 && benchpresslbs < 283) {
+                        bpclass = "Class III"
+                    }
+                    else if (benchpresslbs >= 283 && benchpresslbs < 320) {
+                        bpclass = "Class II"
+                    }
+                    else if (benchpresslbs >= 320 && benchpresslbs < 359) {
+                        bpclass = "Class I"
+                    }
+                    else if (benchpresslbs >= 359 && benchpresslbs < 390) {
+                        bpclass = "Master"
+                    }
+                    else if (benchpresslbs >= 390 && benchpresslbs < 425) {
+                        bpclass = "Elite"
+                    }
+                    else if (benchpresslbs >= 425) {
+                        bpclass = "International Elite"
+                    }
+
+                    // deadlift calculation
+                    if (deadliftlbs >= 339 && deadliftlbs < 390) {
+                        dlclass = "Class IV"
+                    }
+                    else if (deadliftlbs >= 390 && deadliftlbs < 447) {
+                        dlclass = "Class III"
+                    }
+                    else if (deadliftlbs >= 447 && deadliftlbs < 508) {
+                        dlclass = "Class II"
+                    }
+                    else if (deadliftlbs >= 508 && deadliftlbs < 566) {
+                        dlclass = "Class I"
+                    }
+                    else if (deadliftlbs >= 566 && deadliftlbs < 616) {
+                        dlclass = "Master"
+                    }
+                    else if (deadliftlbs >= 616 && deadliftlbs < 671) {
+                        dlclass = "Elite"
+                    }
+                    else if (deadliftlbs >= 671) {
+                        dlclass = "International Elite"
+                    }
+
+                    // curl calculation
+                    if (curllbs >= 88 && curllbs < 102) {
+                        curlclass = "Class IV"
+                    }
+                    else if (curllbs >= 102 && curllbs < 116) {
+                        curlclass = "Class III"
+                    }
+                    else if (curllbs >= 116 && curllbs < 132) {
+                        curlclass = "Class II"
+                    }
+                    else if (curllbs >= 132 && curllbs < 148) {
+                        curlclass = "Class I"
+                    }
+                    else if (curllbs >= 148 && curllbs < 160) {
+                        curlclass = "Master"
+                    }
+                    else if (curllbs >= 160 && curllbs < 174.4) {
+                        curlclass = "Elite"
+                    }
+                    else if (curllbs >= 174.4) {
+                        curlclass = "International Elite"
+                    }
+
+                    // total lift
+                    if (totalliftlbs >= 858 && totalliftlbs < 987) {
+                        totalliftclass = "Class IV"
+                    }
+                    else if (totalliftlbs >= 932 && totalliftlbs < 1131) {
+                        totalliftclass = "Class III"
+                    }
+                    else if (totalliftlbs >= 1071 && totalliftlbs < 1280) {
+                        totalliftclass = "Class II"
+                    }
+                    else if (totalliftlbs >= 1215 && totalliftlbs < 1436) {
+                        totalliftclass = "Class I"
+                    }
+                    else if (totalliftlbs >= 1355 && totalliftlbs < 1558) {
+                        totalliftclass = "Master"
+                    }
+                    else if (totalliftlbs >= 1478 && totalliftlbs < 1698) {
+                        totalliftclass = "Elite"
+                    }
+                    else if (totalliftlbs >= 1698) {
+                        totalliftclass = "International Elite"
+                    }
+                }
+
+                else if (bodyweightlbs > 198 && bodyweightlbs <= 220) {
+                    
+                    // setting up various classes per weight group
+                    // squat calculation
+                    if (squatlbs >= 339 && squatlbs < 390) {
+                        squatclass = "Class IV"
+                    }
+                    else if (squatlbs >= 390 && squatlbs < 447) {
+                        squatclass = "Class III"
+                    }
+                    else if (squatlbs >= 447 && squatlbs < 508) {
+                        squatclass = "Class II"
+                    }
+                    else if (squatlbs >= 508 && squatlbs < 566) {
+                        squatclass = "Class I"
+                    }
+                    else if (squatlbs >= 566 && squatlbs < 616) {
+                        squatclass = "Master"
+                    }
+                    else if (squatlbs >= 616 && squatlbs < 671) {
+                        squatclass = "Elite"
+                    }
+                    else if (squatlbs >= 671) {
+                        squatclass = "International Elite"
+                    }
+                    
+                    // benchpress calculation
+                    if (benchpresslbs >= 226 && benchpresslbs < 260) {
+                        bpclass = "Class IV"
+                    }
+                    else if (benchpresslbs >= 260 && benchpresslbs < 298) {
+                        bpclass = "Class III"
+                    }
+                    else if (benchpresslbs >= 298 && benchpresslbs < 339) {
+                        bpclass = "Class II"
+                    }
+                    else if (benchpresslbs >= 339 && benchpresslbs < 377) {
+                        bpclass = "Class I"
+                    }
+                    else if (benchpresslbs >= 377 && benchpresslbs < 411) {
+                        bpclass = "Master"
+                    }
+                    else if (benchpresslbs >= 411 && benchpresslbs < 447) {
+                        bpclass = "Elite"
+                    }
+                    else if (benchpresslbs >= 447) {
+                        bpclass = "International Elite"
+                    }
+
+                    // deadlift calculation
+                    if (deadliftlbs >= 339 && deadliftlbs < 390) {
+                        dlclass = "Class IV"
+                    }
+                    else if (deadliftlbs >= 390 && deadliftlbs < 447) {
+                        dlclass = "Class III"
+                    }
+                    else if (deadliftlbs >= 447 && deadliftlbs < 508) {
+                        dlclass = "Class II"
+                    }
+                    else if (deadliftlbs >= 508 && deadliftlbs < 566) {
+                        dlclass = "Class I"
+                    }
+                    else if (deadliftlbs >= 566 && deadliftlbs < 616) {
+                        dlclass = "Master"
+                    }
+                    else if (deadliftlbs >= 616 && deadliftlbs < 671) {
+                        dlclass = "Elite"
+                    }
+                    else if (deadliftlbs >= 671) {
+                        dlclass = "International Elite"
+                    }
+
+                    // curl calculation
+                    if (curllbs >= 92 && curllbs < 107) {
+                        curlclass = "Class IV"
+                    }
+                    else if (curllbs >= 107 && curllbs < 122) {
+                        curlclass = "Class III"
+                    }
+                    else if (curllbs >= 122 && curllbs < 139) {
+                        curlclass = "Class II"
+                    }
+                    else if (curllbs >= 139 && curllbs < 156) {
+                        curlclass = "Class I"
+                    }
+                    else if (curllbs >= 156 && curllbs < 168) {
+                        curlclass = "Master"
+                    }
+                    else if (curllbs >= 168 && curllbs < 183.12) {
+                        curlclass = "Elite"
+                    }
+                    else if (curllbs >= 183.12) {
+                        curlclass = "International Elite"
+                    }
+
+                    // total lift
+                    if (totalliftlbs >= 903 && totalliftlbs < 1041) {
+                        totalliftclass = "Class IV"
+                    }
+                    else if (totalliftlbs >= 1041 && totalliftlbs < 1191) {
+                        totalliftclass = "Class III"
+                    }
+                    else if (totalliftlbs >= 1191 && totalliftlbs < 1355) {
+                        totalliftclass = "Class II"
+                    }
+                    else if (totalliftlbs >= 1355 && totalliftlbs < 1508) {
+                        totalliftclass = "Class I"
+                    }
+                    else if (totalliftlbs >= 1508 && totalliftlbs < 1642) {
+                        totalliftclass = "Master"
+                    }
+                    else if (totalliftlbs >= 1642 && totalliftlbs < 1790) {
+                        totalliftclass = "Elite"
+                    }
+                    else if (totalliftlbs >= 1790) {
+                        totalliftclass = "International Elite"
+                    }
+                }
+
+                else if (bodyweightlbs > 220 && bodyweightlbs <= 242) {
+                    
+                    // setting up various classes per weight group
+                    // squat calculation
+                    if (squatlbs >= 358 && squatlbs < 409) {
+                        squatclass = "Class IV"
+                    }
+                    else if (squatlbs >= 409 && squatlbs < 467) {
+                        squatclass = "Class III"
+                    }
+                    else if (squatlbs >= 467 && squatlbs < 532) {
+                        squatclass = "Class II"
+                    }
+                    else if (squatlbs >= 532 && squatlbs < 594) {
+                        squatclass = "Class I"
+                    }
+                    else if (squatlbs >= 594 && squatlbs < 646) {
+                        squatclass = "Master"
+                    }
+                    else if (squatlbs >= 646 && squatlbs < 705) {
+                        squatclass = "Elite"
+                    }
+                    else if (squatlbs >= 705) {
+                        squatclass = "International Elite"
+                    }
+                    
+                    // benchpress calculation
+                    if (benchpresslbs >= 236 && benchpresslbs < 269) {
+                        bpclass = "Class IV"
+                    }
+                    else if (benchpresslbs >= 269 && benchpresslbs < 308) {
+                        bpclass = "Class III"
+                    }
+                    else if (benchpresslbs >= 308 && benchpresslbs < 350) {
+                        bpclass = "Class II"
+                    }
+                    else if (benchpresslbs >= 350 && benchpresslbs < 391) {
+                        bpclass = "Class I"
+                    }
+                    else if (benchpresslbs >= 394 && benchpresslbs < 425) {
+                        bpclass = "Master"
+                    }
+                    else if (benchpresslbs >= 425 && benchpresslbs < 464) {
+                        bpclass = "Elite"
+                    }
+                    else if (benchpresslbs >= 464) {
+                        bpclass = "International Elite"
+                    }
+
+                    // deadlift calculation
+                    if (deadliftlbs >= 349 && deadliftlbs < 398) {
+                        dlclass = "Class IV"
+                    }
+                    else if (deadliftlbs >= 398 && deadliftlbs < 455) {
+                        dlclass = "Class III"
+                    }
+                    else if (deadliftlbs >= 455 && deadliftlbs < 518) {
+                        dlclass = "Class II"
+                    }
+                    else if (deadliftlbs >= 518 && deadliftlbs < 578) {
+                        dlclass = "Class I"
+                    }
+                    else if (deadliftlbs >= 678 && deadliftlbs < 629) {
+                        dlclass = "Master"
+                    }
+                    else if (deadliftlbs >= 629 && deadliftlbs < 686) {
+                        dlclass = "Elite"
+                    }
+                    else if (deadliftlbs >= 686) {
+                        dlclass = "International Elite"
+                    }
+
+                    // curl calculation
+                    if (curllbs >= 97 && curllbs < 111) {
+                        curlclass = "Class IV"
+                    }
+                    else if (curllbs >= 111 && curllbs < 127) {
+                        curlclass = "Class III"
+                    }
+                    else if (curllbs >= 127 && curllbs < 144) {
+                        curlclass = "Class II"
+                    }
+                    else if (curllbs >= 144 && curllbs < 163) {
+                        curlclass = "Class I"
+                    }
+                    else if (curllbs >= 163 && curllbs < 175) {
+                        curlclass = "Master"
+                    }
+                    else if (curllbs >= 175 && curllbs < 190.75) {
+                        curlclass = "Elite"
+                    }
+                    else if (curllbs >= 190.75) {
+                        curlclass = "International Elite"
+                    }
+
+                    // total lift
+                    if (totalliftlbs >= 942 && totalliftlbs < 1076) {
+                        totalliftclass = "Class IV"
+                    }
+                    else if (totalliftlbs >= 1076 && totalliftlbs < 1230) {
+                        totalliftclass = "Class III"
+                    }
+                    else if (totalliftlbs >= 1230 && totalliftlbs < 1399) {
+                        totalliftclass = "Class II"
+                    }
+                    else if (totalliftlbs >= 1399 && totalliftlbs < 1562) {
+                        totalliftclass = "Class I"
+                    }
+                    else if (totalliftlbs >= 1562 && totalliftlbs < 1701) {
+                        totalliftclass = "Master"
+                    }
+                    else if (totalliftlbs >= 1701 && totalliftlbs < 1854) {
+                        totalliftclass = "Elite"
+                    }
+                    else if (totalliftlbs >= 1854) {
+                        totalliftclass = "International Elite"
+                    }
+                }
+
+                else if (bodyweightlbs > 242 && bodyweightlbs <= 275) {
+                    
+                    // setting up various classes per weight group
+                    // squat calculation
+                    if (squatlbs >= 373 && squatlbs < 426) {
+                        squatclass = "Class IV"
+                    }
+                    else if (squatlbs >= 426 && squatlbs < 489) {
+                        squatclass = "Class III"
+                    }
+                    else if (squatlbs >= 489 && squatlbs < 554) {
+                        squatclass = "Class II"
+                    }
+                    else if (squatlbs >= 554 && squatlbs < 619) {
+                        squatclass = "Class I"
+                    }
+                    else if (squatlbs >= 619 && squatlbs < 674) {
+                        squatclass = "Master"
+                    }
+                    else if (squatlbs >= 674 && squatlbs < 735) {
+                        squatclass = "Elite"
+                    }
+                    else if (squatlbs >= 735) {
+                        squatclass = "International Elite"
+                    }
+                    
+                    // benchpress calculation
+                    if (benchpresslbs >= 242 && benchpresslbs < 277) {
+                        bpclass = "Class IV"
+                    }
+                    else if (benchpresslbs >= 277 && benchpresslbs < 318) {
+                        bpclass = "Class III"
+                    }
+                    else if (benchpresslbs >= 318 && benchpresslbs < 360) {
+                        bpclass = "Class II"
+                    }
+                    else if (benchpresslbs >= 360 && benchpresslbs < 402) {
+                        bpclass = "Class I"
+                    }
+                    else if (benchpresslbs >= 402 && benchpresslbs < 438) {
+                        bpclass = "Master"
+                    }
+                    else if (benchpresslbs >= 438 && benchpresslbs < 477) {
+                        bpclass = "Elite"
+                    }
+                    else if (benchpresslbs >= 477) {
+                        bpclass = "International Elite"
+                    }
+
+                    // deadlift calculation
+                    if (deadliftlbs >= 353 && deadliftlbs < 404) {
+                        dlclass = "Class IV"
+                    }
+                    else if (deadliftlbs >= 404 && deadliftlbs < 464) {
+                        dlclass = "Class III"
+                    }
+                    else if (deadliftlbs >= 464 && deadliftlbs < 525) {
+                        dlclass = "Class II"
+                    }
+                    else if (deadliftlbs >= 525 && deadliftlbs < 587) {
+                        dlclass = "Class I"
+                    }
+                    else if (deadliftlbs >= 587 && deadliftlbs < 639) {
+                        dlclass = "Master"
+                    }
+                    else if (deadliftlbs >= 639 && deadliftlbs < 697) {
+                        dlclass = "Elite"
+                    }
+                    else if (deadliftlbs >= 697) {
+                        dlclass = "International Elite"
+                    }
+
+                    // curl calculation
+                    if (curllbs >= 97 && curllbs < 111) {
+                        curlclass = "Class IV"
+                    }
+                    else if (curllbs >= 111 && curllbs < 127) {
+                        curlclass = "Class III"
+                    }
+                    else if (curllbs >= 127 && curllbs < 144) {
+                        curlclass = "Class II"
+                    }
+                    else if (curllbs >= 144 && curllbs < 163) {
+                        curlclass = "Class I"
+                    }
+                    else if (curllbs >= 163 && curllbs < 175) {
+                        curlclass = "Master"
+                    }
+                    else if (curllbs >= 175 && curllbs < 190.75) {
+                        curlclass = "Elite"
+                    }
+                    else if (curllbs >= 190.75) {
+                        curlclass = "International Elite"
+                    }
+
+                    // total lift
+                    if (totalliftlbs >= 968 && totalliftlbs < 1106) {
+                        totalliftclass = "Class IV"
+                    }
+                    else if (totalliftlbs >= 1106 && totalliftlbs < 1270) {
+                        totalliftclass = "Class III"
+                    }
+                    else if (totalliftlbs >= 1270 && totalliftlbs < 1438) {
+                        totalliftclass = "Class II"
+                    }
+                    else if (totalliftlbs >= 1438 && totalliftlbs < 1607) {
+                        totalliftclass = "Class I"
+                    }
+                    else if (totalliftlbs >= 1607 && totalliftlbs < 1751) {
+                        totalliftclass = "Master"
+                    }
+                    else if (totalliftlbs >= 1751 && totalliftlbs < 1909) {
+                        totalliftclass = "Elite"
+                    }
+                    else if (totalliftlbs >= 1909) {
+                        totalliftclass = "International Elite"
+                    }
+                }
+
+                else if (bodyweightlbs > 275 && bodyweightlbs <= 308) {
+                    
+                    // setting up various classes per weight group
+                    // squat calculation
+                    if (squatlbs >= 393 && squatlbs < 449) {
+                        squatclass = "Class IV"
+                    }
+                    else if (squatlbs >= 449 && squatlbs < 517) {
+                        squatclass = "Class III"
+                    }
+                    else if (squatlbs >= 517 && squatlbs < 586) {
+                        squatclass = "Class II"
+                    }
+                    else if (squatlbs >= 586 && squatlbs < 652) {
+                        squatclass = "Class I"
+                    }
+                    else if (squatlbs >= 652 && squatlbs < 714) {
+                        squatclass = "Master"
+                    }
+                    else if (squatlbs >= 714 && squatlbs < 778) {
+                        squatclass = "Elite"
+                    }
+                    else if (squatlbs >= 778) {
+                        squatclass = "International Elite"
+                    }
+                    
+                    // benchpress calculation
+                    if (benchpresslbs >= 252 && benchpresslbs < 288) {
+                        bpclass = "Class IV"
+                    }
+                    else if (benchpresslbs >= 288 && benchpresslbs < 331) {
+                        bpclass = "Class III"
+                    }
+                    else if (benchpresslbs >= 331 && benchpresslbs < 376) {
+                        bpclass = "Class II"
+                    }
+                    else if (benchpresslbs >= 376 && benchpresslbs < 418) {
+                        bpclass = "Class I"
+                    }
+                    else if (benchpresslbs >= 418 && benchpresslbs < 458) {
+                        bpclass = "Master"
+                    }
+                    else if (benchpresslbs >= 458 && benchpresslbs < 499) {
+                        bpclass = "Elite"
+                    }
+                    else if (benchpresslbs >= 499) {
+                        bpclass = "International Elite"
+                    }
+
+                    // deadlift calculation
+                    if (deadliftlbs >= 363 && deadliftlbs < 414) {
+                        dlclass = "Class IV"
+                    }
+                    else if (deadliftlbs >= 414 && deadliftlbs < 477) {
+                        dlclass = "Class III"
+                    }
+                    else if (deadliftlbs >= 477 && deadliftlbs < 541) {
+                        dlclass = "Class II"
+                    }
+                    else if (deadliftlbs >= 541 && deadliftlbs < 602) {
+                        dlclass = "Class I"
+                    }
+                    else if (deadliftlbs >= 602 && deadliftlbs < 659) {
+                        dlclass = "Master"
+                    }
+                    else if (deadliftlbs >= 659 && deadliftlbs < 718) {
+                        dlclass = "Elite"
+                    }
+                    else if (deadliftlbs >= 718) {
+                        dlclass = "International Elite"
+                    }
+
+                    // curl calculation
+                    if (curllbs >= 97 && curllbs < 111) {
+                        curlclass = "Class IV"
+                    }
+                    else if (curllbs >= 111 && curllbs < 127) {
+                        curlclass = "Class III"
+                    }
+                    else if (curllbs >= 127 && curllbs < 144) {
+                        curlclass = "Class II"
+                    }
+                    else if (curllbs >= 144 && curllbs < 163) {
+                        curlclass = "Class I"
+                    }
+                    else if (curllbs >= 163 && curllbs < 175) {
+                        curlclass = "Master"
+                    }
+                    else if (curllbs >= 175 && curllbs < 190.75) {
+                        curlclass = "Elite"
+                    }
+                    else if (curllbs >= 190.75) {
+                        curlclass = "International Elite"
+                    }
+
+                    // total lift
+                    if (totalliftlbs >= 1007 && totalliftlbs < 1151) {
+                        totalliftclass = "Class IV"
+                    }
+                    else if (totalliftlbs >= 1151 && totalliftlbs < 1225) {
+                        totalliftclass = "Class III"
+                    }
+                    else if (totalliftlbs >= 1225 && totalliftlbs < 1503) {
+                        totalliftclass = "Class II"
+                    }
+                    else if (totalliftlbs >= 1503 && totalliftlbs < 1370) {
+                        totalliftclass = "Class I"
+                    }
+                    else if (totalliftlbs >= 1370 && totalliftlbs < 1830) {
+                        totalliftclass = "Master"
+                    }
+                    else if (totalliftlbs >= 1830 && totalliftlbs < 1995) {
+                        totalliftclass = "Elite"
+                    }
+                    else if (totalliftlbs >= 1995) {
+                        totalliftclass = "International Elite"
+                    }
+                }
+
+                else if (bodyweightlbs > 308) {
+                    
+                    // setting up various classes per weight group
+                    // squat calculation
+                    if (squatlbs >= 405 && squatlbs < 463) {
+                        squatclass = "Class IV"
+                    }
+                    else if (squatlbs >= 463 && squatlbs < 532) {
+                        squatclass = "Class III"
+                    }
+                    else if (squatlbs >= 532 && squatlbs < 604) {
+                        squatclass = "Class II"
+                    }
+                    else if (squatlbs >= 604 && squatlbs < 672) {
+                        squatclass = "Class I"
+                    }
+                    else if (squatlbs >= 672 && squatlbs < 735) {
+                        squatclass = "Master"
+                    }
+                    else if (squatlbs >= 735 && squatlbs < 801) {
+                        squatclass = "Elite"
+                    }
+                    else if (squatlbs >= 801) {
+                        squatclass = "International Elite"
+                    }
+                    
+                    // benchpress calculation
+                    if (benchpresslbs >= 260 && benchpresslbs < 297) {
+                        bpclass = "Class IV"
+                    }
+                    else if (benchpresslbs >= 297 && benchpresslbs < 341) {
+                        bpclass = "Class III"
+                    }
+                    else if (benchpresslbs >= 341 && benchpresslbs < 387) {
+                        bpclass = "Class II"
+                    }
+                    else if (benchpresslbs >= 387 && benchpresslbs < 431) {
+                        bpclass = "Class I"
+                    }
+                    else if (benchpresslbs >= 431 && benchpresslbs < 471) {
+                        bpclass = "Master"
+                    }
+                    else if (benchpresslbs >= 471 && benchpresslbs < 514) {
+                        bpclass = "Elite"
+                    }
+                    else if (benchpresslbs >= 514) {
+                        bpclass = "International Elite"
+                    }
+
+                    // deadlift calculation
+                    if (deadliftlbs >= 374 && deadliftlbs < 427) {
+                        dlclass = "Class IV"
+                    }
+                    else if (deadliftlbs >= 427 && deadliftlbs < 491) {
+                        dlclass = "Class III"
+                    }
+                    else if (deadliftlbs >= 491 && deadliftlbs < 557) {
+                        dlclass = "Class II"
+                    }
+                    else if (deadliftlbs >= 557 && deadliftlbs < 620) {
+                        dlclass = "Class I"
+                    }
+                    else if (deadliftlbs >= 620 && deadliftlbs < 679) {
+                        dlclass = "Master"
+                    }
+                    else if (deadliftlbs >= 679 && deadliftlbs < 740) {
+                        dlclass = "Elite"
+                    }
+                    else if (deadliftlbs >= 740) {
+                        dlclass = "International Elite"
+                    }
+
+                    // curl calculation
+                    if (curllbs >= 97 && curllbs < 111) {
+                        curlclass = "Class IV"
+                    }
+                    else if (curllbs >= 111 && curllbs < 127) {
+                        curlclass = "Class III"
+                    }
+                    else if (curllbs >= 127 && curllbs < 144) {
+                        curlclass = "Class II"
+                    }
+                    else if (curllbs >= 144 && curllbs < 163) {
+                        curlclass = "Class I"
+                    }
+                    else if (curllbs >= 163 && curllbs < 175) {
+                        curlclass = "Master"
+                    }
+                    else if (curllbs >= 175 && curllbs < 190.75) {
+                        curlclass = "Elite"
+                    }
+                    else if (curllbs >= 190.75) {
+                        curlclass = "International Elite"
+                    }
+
+                    // total lift
+                    if (totalliftlbs >= 1038 && totalliftlbs < 1185) {
+                        totalliftclass = "Class IV"
+                    }
+                    else if (totalliftlbs >= 1185 && totalliftlbs < 1365) {
+                        totalliftclass = "Class III"
+                    }
+                    else if (totalliftlbs >= 1635 && totalliftlbs < 1548) {
+                        totalliftclass = "Class II"
+                    }
+                    else if (totalliftlbs >= 1548 && totalliftlbs < 1722) {
+                        totalliftclass = "Class I"
+                    }
+                    else if (totalliftlbs >= 1722 && totalliftlbs < 1885) {
+                        totalliftclass = "Master"
+                    }
+                    else if (totalliftlbs >= 1885 && totalliftlbs < 2055) {
+                        totalliftclass = "Elite"
+                    }
+                    else if (totalliftlbs >= 2055) {
+                        totalliftclass = "International Elite"
+                    }
+                }
+
+                // print out all of the classifications
+                document.getElementById('squat-class').innerHTML = squatclass;
+                document.getElementById('bp-class').innerHTML = bpclass;
+                document.getElementById('dl-class').innerHTML = dlclass;
+                document.getElementById('total-class').innerHTML = totalliftclass;
+                document.getElementById('curl-class').innerHTML = curlclass;
+
+            }
+
+        </script>
+    </head>
+    <body>
+        <div>
+            <label>Body Weight (kg)&nbsp;</label>
+            <input id="body-weight" type="text">
+        </div>
+        <div>
+            <label>Squat (kg)&nbsp;</label>
+            <input id="squat-weight" type="text">
+            <h2 id="squat-class"></h2>
+        </div>
+        <div>
+            <label>Bench Press (kg)&nbsp;</label>
+            <input id="bp-weight" type="text">
+            <h2 id="bp-class"></h2>
+        </div>
+        <div>
+            <label>Dead Lift (kg)&nbsp;</label>
+            <input id="dl-weight" type="text">
+            <h2 id="dl-class"></h2>
+        </div>
+        <div>
+            <label>Total Lift (kg)&nbsp;</label>
+            <!--<input id="tl-weight" type="int">-->
+            <h2 id="total-lift"></h2>
+            <h2 id="total-class"></h2>
+        </div>
+        <div>
+            <label>Strict Curl (kg)&nbsp;</label>
+            <input id="sc-weight" type="text">
+            <h2 id="curl-class"></h2>
+        </div>
+        <button onclick="output()">
+            Calculate
+        </button>
+    </body>
+</html>
